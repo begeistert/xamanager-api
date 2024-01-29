@@ -63,7 +63,7 @@ class Xamanager:
 
         self.versions['android'] = list(versions.find({"platform": "android"}, {"_id": 0}).sort("identifier", DESCENDING))
         self.versions['ios'] = list(versions.find({"platform": "ios"}, {"_id": 0}).sort("identifier", DESCENDING))
-        self.versions['macos'] = list(versions.find({"platform": "mac"}, {"_id": 0}).sort("identifier", DESCENDING))
+        self.versions['macos'] = list(versions.find({"platform": "macos"}, {"_id": 0}).sort("identifier", DESCENDING))
 
         self.dumps['android'] = dumps(self.versions['android'])
         self.dumps['ios'] = dumps(self.versions['ios'])
