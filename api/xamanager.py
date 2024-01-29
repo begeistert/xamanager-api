@@ -29,6 +29,13 @@ class Xamanager:
 
         return self.versions[platform][0]
 
+    def get_version(self, platform: str, version: str):
+        if platform not in self.versions.keys():
+            return {}
+
+        xamarin = self._db.versions.find_one({'platform': platform, 'version': version}, {"_id": 0})
+        return xamarin
+
     def search_new_versions(self):
         result = self._search_new_android_versions()
         result = self._search_new_ios_and_mac_versions() or result

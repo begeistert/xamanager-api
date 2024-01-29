@@ -43,5 +43,22 @@ def all_versions(platform):
     return response
 
 
+@app.route('/api/v1.0/xamarin/version/<string:platform>/<string:version>', methods=["GET"])
+def get_version(platform, version):
+    global time_stamp
+
+    if platform == '' or platform not in manager.platforms:
+        return Response(json.dumps({'error': 'Platform not found'}), mimetype='application/json', status=404)
+
+    # look for new versions
+    if datetime.now() - time_stamp > timedelta(minutes=120):
+        manager.search_new_versions()
+        time_stamp = datetime.now()
+
+    response = make_response(manager.get_version(platform, version))
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+
 if __name__ == '__main__':
     app.run()
