@@ -1,6 +1,6 @@
 import requests
 import mistletoe
-from models import Version
+from api.models import Version
 from mistletoe.markdown_renderer import MarkdownRenderer, LinkReferenceDefinitionBlock, LinkReferenceDefinition
 from mistletoe.block_token import Table
 import mistletoe.span_token as span_tokens
